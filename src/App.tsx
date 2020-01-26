@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useContent, Status } from './context/Content'
-import { Categories } from './views/Categories'
-import { Items } from './views/Items'
-import { Item } from './views/Item'
+import { CategoryList } from './views/CategoryList'
+import { ModelList } from './views/ModelList'
+import { ModelDetails } from './views/ModelDetails'
 
 const Loader: React.FC = () => (
   <div>
@@ -21,13 +21,13 @@ const Content: React.FC = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Categories />
+        <CategoryList />
       </Route>
       <Route exact path="/:categoryId">
-        <Items />
+        <ModelList />
       </Route>
       <Route exact path="/:categoryId/:modelId">
-        <Item />
+        <ModelDetails />
       </Route>
     </Switch>
   </Router>
