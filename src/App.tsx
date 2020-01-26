@@ -9,7 +9,6 @@ import { ModelDetails } from './views/ModelDetails'
 
 const ViewContainer = styled.div`
   min-height: 100%;
-  padding: 2rem;
 `
 
 const Loader: React.FC = () => (
@@ -28,21 +27,15 @@ const Router: React.FC = () => {
   const location = useLocation()
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <ViewContainer>
+    <ViewContainer>
+      <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname}>
-          <Route exact path="/">
-            <CategoryList />
-          </Route>
-          <Route exact path="/:categoryId">
-            <ModelList />
-          </Route>
-          <Route exact path="/:categoryId/:modelId">
-            <ModelDetails />
-          </Route>
+          <Route exact path="/" component={CategoryList} />
+          <Route exact path="/:categoryId" component={ModelList} />
+          <Route exact path="/:categoryId/:modelId" component={ModelDetails} />
         </Switch>
-      </ViewContainer>
-    </AnimatePresence>
+      </AnimatePresence>
+    </ViewContainer>
   )
 }
 
