@@ -2,10 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { App } from './App'
 import { Provider as ContentProvider } from './context/Content'
+import { GlobalStyle } from './globalStyles'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <ContentProvider>
+    <GlobalStyle />
     <App />
   </ContentProvider>,
   document.getElementById('root')
