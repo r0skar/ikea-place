@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useContent, Status } from './context/Content'
 import { Categories } from './views/Categories'
 import { Items } from './views/Items'
@@ -17,11 +18,19 @@ const Error: React.FC = () => (
 )
 
 const Content: React.FC = () => (
-  <div>
-    <Categories />
-    <Items />
-    <Item />
-  </div>
+  <Router>
+    <Switch>
+      <Route exact path="/">
+        <Categories />
+      </Route>
+      <Route exact path="/:categoryId">
+        <Items />
+      </Route>
+      <Route exact path="/:categoryId/:modelId">
+        <Item />
+      </Route>
+    </Switch>
+  </Router>
 )
 
 export const App: React.FC = () => {
