@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { useContent, Status } from './context/Content'
+import { Loader } from './components/Loader'
 import { CategoryList } from './views/CategoryList'
 import { ModelList } from './views/ModelList'
 import { ModelDetails } from './views/ModelDetails'
@@ -11,15 +12,9 @@ const ViewContainer = styled.div`
   min-height: 100%;
 `
 
-const Loader: React.FC = () => (
-  <ViewContainer>
-    <h1>Loading...</h1>
-  </ViewContainer>
-)
-
 const Error: React.FC = () => (
   <ViewContainer>
-    <h1>Error...</h1>
+    <h1>Failed to fetch content from API.</h1>
   </ViewContainer>
 )
 
