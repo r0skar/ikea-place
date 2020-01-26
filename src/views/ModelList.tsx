@@ -130,7 +130,7 @@ const CoverImage = styled(motion.img)`
 const Content = styled(motion.div)`
   display: grid;
   grid-row-gap: 1rem;
-  padding: 6rem 2rem;
+  padding: 4rem 2rem;
 
   @media (min-width: 568px) {
     position: absolute;

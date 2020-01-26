@@ -93,7 +93,7 @@ const CoverImage = styled(motion.img)`
 const Content = styled.div`
   display: grid;
   grid-row-gap: 1rem;
-  padding: 6rem 2rem;
+  padding: 4rem 2rem;
   will-change: transform, opacity;
 `
 
