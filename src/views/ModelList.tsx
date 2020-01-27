@@ -120,7 +120,7 @@ const ImgContainer = styled(motion.div)`
 
 const ImgOverlay = styled(motion.div)`
   background-color: #000000;
-  mix-blend-mode: overlay;
+  mix-blend-mode: color;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -172,7 +172,7 @@ const Description = styled(motion.p)`
 
 const List = styled(motion.ul)`
   display: grid;
-  padding: 0 2rem 6rem;
+  padding: 0 2rem 18rem;
   grid-row-gap: 4rem;
   grid-column-gap: 2rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -191,7 +191,7 @@ const ListItem = styled(motion.li)`
 
 const ItemImg = styled.img`
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: 50% 50%;
   height: 100%;
   width: 100%;
@@ -213,16 +213,17 @@ export const ModelList: React.FC = () => {
   const { data } = useContent()
   const { categoryId } = useParams()
   const { scrollYProgress } = useViewportScroll()
+  const viewportHeight = useRef(window.innerHeight / 10)
   const { name, models } = data.find(c => c.id === categoryId)!
   const rndImg = useRef(`/img/unsplash_${Math.floor(Math.random() * 6 + 1)}.webp`)
 
   const parallaxImgStyle = {
-    translateY: useTransform(scrollYProgress, [0, 1], [0, 250]),
+    translateY: useTransform(scrollYProgress, [0, 1], [0, viewportHeight.current]),
     scale: useTransform(scrollYProgress, [0, 1], [1, 1.2])
   }
 
   const parallaxOverlayStyle = {
-    opacity: useTransform(scrollYProgress, [0, 0.5], [0, 1])
+    opacity: useTransform(scrollYProgress, [0, 1], [0, 1])
   }
 
   useEffect(() => {

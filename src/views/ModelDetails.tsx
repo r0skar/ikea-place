@@ -85,6 +85,7 @@ const CoverImage = styled(motion.img)`
   will-change: transform, opacity;
 
   @media (min-width: 568px) {
+    object-fit: contain;
     margin: auto;
     width: auto;
   }
