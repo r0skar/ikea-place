@@ -13,8 +13,8 @@ export enum Status {
 }
 
 const CACHE = window.sessionStorage
-const MODELS_ENDPOINT = 'http://dev2.viewar.com/api10/models/ids:'
-const CATEGORIES_ENDPOINT = 'http://dev2.viewar.com/api40/tree/channel:3265/version:1579872378'
+const MODELS_ENDPOINT = 'https://dev2.viewar.com/api10/models/ids:'
+const CATEGORIES_ENDPOINT = 'https://dev2.viewar.com/api40/tree/channel:3265/version:1579872378'
 const Context = React.createContext({} as State)
 
 export const useContent = () => {
