@@ -118,6 +118,17 @@ const ImgContainer = styled(motion.div)`
   }
 `
 
+const ImgOverlay = styled(motion.div)`
+  background-color: #000000;
+  mix-blend-mode: color;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+`
+
 const CoverImage = styled(motion.img)`
   display: block;
   object-fit: cover;
@@ -205,20 +216,26 @@ export const ModelList: React.FC = () => {
   const { name, models } = data.find(c => c.id === categoryId)!
   const rndImg = useRef(`/img/unsplash_${Math.floor(Math.random() * 6 + 1)}.webp`)
 
-  const parallaxStyle = {
-    translateY: useTransform(scrollYProgress, [0, 1], [0, 200]),
-    scale: useTransform(scrollYProgress, [0, 1], [1, 1.5])
+  const parallaxImgStyle = {
+    translateY: useTransform(scrollYProgress, [0, 1], [0, 250]),
+    scale: useTransform(scrollYProgress, [0, 1], [1, 1.2])
+  }
+
+  const parallaxOverlayStyle = {
+    opacity: useTransform(scrollYProgress, [0, 0.75], [0, 1])
   }
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  // TODO: use observer to trigger animations when in view instead of staggered on start.
   return (
     <motion.div initial="initial" animate="enter" exit="exit" variants={pageVariants}>
       <Intro>
         <ParallaxContainer>
-          <ImgContainer style={parallaxStyle}>
+          <ImgContainer style={parallaxImgStyle}>
+            <ImgOverlay style={parallaxOverlayStyle} />
             <CoverImage src={String(rndImg.current)} alt={name} variants={coverImageVariants} />
           </ImgContainer>
         </ParallaxContainer>
