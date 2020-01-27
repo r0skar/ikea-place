@@ -117,6 +117,7 @@ const ImgContainer = styled(motion.div)`
   height: 50vh;
   position: relative;
   overflow: hidden;
+  will-change: transform;
 
   @media (min-width: 568px) {
     height: 100vh;
@@ -132,6 +133,7 @@ const ImgOverlay = styled(motion.div)`
   height: 100%;
   width: 100%;
   z-index: 1;
+  will-change: opacity;
 `
 
 const CoverImage = styled(motion.img)`
