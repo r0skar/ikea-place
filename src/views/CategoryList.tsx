@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useContent } from '../context/Content'
+import { Category } from '../types'
 
 const transition = {
   duration: 0.5,
   ease: [0.43, 0.13, 0.23, 0.96]
 }
 
-const listVariants = {
+const pageVariants = {
+  initial: {
+    opacity: 0
+  },
   enter: {
-    transition: { staggerChildren: 0.1 }
+    opacity: 1,
+    transition
+  },
+  exit: {
+    opacity: 0,
+    transition
   }
 }
 
@@ -77,6 +87,20 @@ const ItemTitle = styled.h1`
   width: 100%;
 `
 
+const CategoryItem: React.FC<Category> = ({ id, name }) => {
+  const [ref, inView] = useInView({ rootMargin: '-50px 0px', triggerOnce: true })
+  const rndImg = useRef(`/img/unsplash_${Math.floor(Math.random() * 6 + 1)}.jpg`)
+
+  return (
+    <ListItem ref={ref} animate={inView ? 'enter' : 'exit'} variants={listItemVariants}>
+      <ItemLink to={`/${id}`}>
+        <ItemImg src={String(rndImg.current)} alt={name} />
+        <ItemTitle>{name}</ItemTitle>
+      </ItemLink>
+    </ListItem>
+  )
+}
+
 export const CategoryList: React.FC = () => {
   const { data } = useContent()
 
@@ -84,18 +108,12 @@ export const CategoryList: React.FC = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  // TODO: use observer to trigger animations when in view instead of staggered on start.
   return (
-    <List initial="initial" animate="enter" exit="exit" variants={listVariants}>
+    <List initial="initial" animate="enter" exit="exit" variants={pageVariants}>
       {data
         .filter(c => c.models.length > 0)
         .map((c, i) => (
-          <ListItem key={c.id} variants={listItemVariants}>
-            <ItemLink to={`/${c.id}`}>
-              <ItemImg src={`/img/unsplash_${Math.min(i + 1, 6)}.jpg`} alt={c.name} />
-              <ItemTitle>{c.name}</ItemTitle>
-            </ItemLink>
-          </ListItem>
+          <CategoryItem key={c.id} {...c} />
         ))}
     </List>
   )

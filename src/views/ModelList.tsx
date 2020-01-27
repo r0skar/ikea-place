@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { useInView } from 'react-intersection-observer'
 import { motion, useViewportScroll, useTransform } from 'framer-motion'
 import { Link, useParams } from 'react-router-dom'
 import { useContent } from '../context/Content'
+import { Model } from '../types'
 
 const preloadImage = (src: string) => {
   const img = new Image()
@@ -16,7 +18,7 @@ const transition = {
 
 const pageVariants = {
   enter: {
-    transition: { staggerChildren: 0.15 }
+    transition: { staggerChildren: 0.5 }
   },
   exit: {
     transition: { staggerChildren: 0.1 }
@@ -30,8 +32,16 @@ const contentVariants = {
 }
 
 const listVariants = {
+  initial: {
+    opacity: 0
+  },
   enter: {
-    transition: { delayChildren: 1, staggerChildren: 0.2 }
+    opacity: 1,
+    transition
+  },
+  exit: {
+    opacity: 0,
+    transition
   }
 }
 
@@ -87,12 +97,10 @@ const contentDescriptionVariants = {
 
 const listItemVariants = {
   initial: {
-    y: 20,
     scale: 0.9,
     opacity: 0
   },
   enter: {
-    y: 0,
     scale: 1,
     opacity: 1,
     transition
@@ -216,6 +224,19 @@ const ItemLink = styled(Link)`
   }
 `
 
+const ModelItem: React.FC<Model & { href: string }> = ({ name, image_url, href }) => {
+  const [ref, inView] = useInView({ rootMargin: '-50px 0px', triggerOnce: true })
+
+  return (
+    <ListItem ref={ref} animate={inView ? 'enter' : 'initial'} variants={listItemVariants}>
+      <ItemLink to={href}>
+        <ItemImg src={image_url} alt={name} />
+        <h2>{name}</h2>
+      </ItemLink>
+    </ListItem>
+  )
+}
+
 export const ModelList: React.FC = () => {
   const { data } = useContent()
   const { categoryId } = useParams()
@@ -240,7 +261,6 @@ export const ModelList: React.FC = () => {
     models.forEach(m => m.image_large && preloadImage(m.image_large))
   }, [models])
 
-  // TODO: use observer to trigger animations when in view instead of staggered on start.
   return (
     <motion.div initial="initial" animate="enter" exit="exit" variants={pageVariants}>
       <Intro>
@@ -260,12 +280,7 @@ export const ModelList: React.FC = () => {
       </Intro>
       <List variants={listVariants}>
         {models.map(m => (
-          <ListItem key={m.id} variants={listItemVariants}>
-            <ItemLink to={`/${categoryId}/${m.id}`}>
-              <ItemImg src={m.image_url} alt={m.name} />
-              <h2>{m.name}</h2>
-            </ItemLink>
-          </ListItem>
+          <ModelItem key={m.id} {...(m as Model)} href={`/${categoryId}/${m.id}`} />
         ))}
       </List>
     </motion.div>
