@@ -23,6 +23,20 @@
     -->
     <title>React App</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
+
+    <!-- Preload cover images -->
+    <style>
+      body::after {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        z-index: -1;
+        content: url('%PUBLIC_URL%/img/unsplash_1.webp') url('%PUBLIC_URL%/img/unsplash_2.webp')
+          url('%PUBLIC_URL%/img/unsplash_3.webp') url('%PUBLIC_URL%/img/unsplash_4.webp')
+          url('%PUBLIC_URL%/img/unsplash_5.webp') url('%PUBLIC_URL%/img/unsplash_6.webp');
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
