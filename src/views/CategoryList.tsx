@@ -92,7 +92,7 @@ export const CategoryList: React.FC = () => {
         .map((c, i) => (
           <ListItem key={c.id} variants={listItemVariants}>
             <ItemLink to={`/${c.id}`}>
-              <ItemImg src={`/img/unsplash_${Math.min(i + 1, 6)}.webp`} alt={c.name} />
+              <ItemImg src={`/img/unsplash_${Math.min(i + 1, 6)}.jpg`} alt={c.name} />
               <ItemTitle>{c.name}</ItemTitle>
             </ItemLink>
           </ListItem>
