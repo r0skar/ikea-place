@@ -4,6 +4,11 @@ import { motion, useViewportScroll, useTransform } from 'framer-motion'
 import { Link, useParams } from 'react-router-dom'
 import { useContent } from '../context/Content'
 
+const preloadImage = (src: string) => {
+  const img = new Image()
+  img.src = src
+}
+
 const transition = {
   duration: 0.5,
   ease: [0.43, 0.13, 0.23, 0.96]
@@ -229,6 +234,10 @@ export const ModelList: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  useEffect(() => {
+    models.forEach(m => m.image_large && preloadImage(m.image_large))
+  }, [models])
 
   // TODO: use observer to trigger animations when in view instead of staggered on start.
   return (
