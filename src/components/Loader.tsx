@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 
+const SHOW_SPINNER_DELAY_MS = 100
 const SPINNER_SPEED_MS = 1800
 
 const spinCube = keyframes`
@@ -34,11 +35,22 @@ const Cube = styled.div<{ bg: string; delay: number }>`
   left: -1.5rem;
 `
 
-export const Loader: React.FC = () => (
-  <View>
-    <Cubes>
-      <Cube bg="#005E9D" delay={0} />
-      <Cube bg="#FFDA1A" delay={(SPINNER_SPEED_MS / 2) * -1} />
-    </Cubes>
-  </View>
-)
+export const Loader: React.FC = () => {
+  const [isSpinnerVisible, setSpinnerVisibility] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(setSpinnerVisibility, SHOW_SPINNER_DELAY_MS, true)
+    return () => clearTimeout(timeout)
+  }, [])
+
+  return (
+    <View>
+      {isSpinnerVisible && (
+        <Cubes>
+          <Cube bg="#005E9D" delay={0} />
+          <Cube bg="#FFDA1A" delay={(SPINNER_SPEED_MS / 2) * -1} />
+        </Cubes>
+      )}
+    </View>
+  )
+}
