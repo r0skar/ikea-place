@@ -120,7 +120,11 @@ const ImgContainer = styled(motion.div)`
 
 const ImgOverlay = styled(motion.div)`
   background-color: #000000;
+<<<<<<< HEAD
   mix-blend-mode: overlay;
+=======
+  mix-blend-mode: color;
+>>>>>>> beeb61f6fd96317d20d77747346c676d929e5063
   position: absolute;
   bottom: 0;
   left: 0;

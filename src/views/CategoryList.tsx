@@ -84,6 +84,7 @@ export const CategoryList: React.FC = () => {
     window.scrollTo(0, 0)
   }, [])
 
+  // TODO: use observer to trigger animations when in view instead of staggered on start.
   return (
     <List initial="initial" animate="enter" exit="exit" variants={listVariants}>
       {data
