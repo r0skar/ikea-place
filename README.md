@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e9d26de5-a17e-4d03-900b-84f159193120/deploy-status)](https://app.netlify.com/sites/ikea-places/deploys)
+
+___
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
