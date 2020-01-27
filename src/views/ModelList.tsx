@@ -218,12 +218,11 @@ export const ModelList: React.FC = () => {
   const { data } = useContent()
   const { categoryId } = useParams()
   const { scrollYProgress } = useViewportScroll()
-  const viewportHeight = useRef(window.innerHeight / 10)
   const { name, models } = data.find(c => c.id === categoryId)!
   const rndImg = useRef(`/img/unsplash_${Math.floor(Math.random() * 6 + 1)}.jpg`)
 
   const parallaxImgStyle = {
-    translateY: useTransform(scrollYProgress, [0, 1], [0, viewportHeight.current]),
+    translateY: useTransform(scrollYProgress, [0, 1], [0, 200]),
     scale: useTransform(scrollYProgress, [0, 1], [1, 1.2])
   }
 
