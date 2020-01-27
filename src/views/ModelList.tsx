@@ -188,8 +188,7 @@ const Description = styled(motion.p)`
 const List = styled(motion.ul)`
   display: grid;
   padding: 0 2rem 18rem;
-  grid-row-gap: 4rem;
-  grid-column-gap: 2rem;
+  grid-gap: 2rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @media (min-width: 568px) {
@@ -206,7 +205,7 @@ const ListItem = styled(motion.li)`
 
 const ItemImg = styled.img`
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   object-position: 50% 50%;
   height: 100%;
   width: 100%;
@@ -215,7 +214,7 @@ const ItemImg = styled.img`
 const ItemLink = styled(Link)`
   height: 100%;
   display: grid;
-  grid-template-rows: 150px min-content;
+  grid-template-rows: 125px min-content;
   grid-row-gap: 1rem;
   align-content: space-between;
 
