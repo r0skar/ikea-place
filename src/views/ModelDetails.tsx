@@ -66,7 +66,7 @@ const descriptionVariants = {
 }
 
 const ImgContainer = styled.div`
-  height: 50vh;
+  height: 60vh;
   position: relative;
   overflow: hidden;
 

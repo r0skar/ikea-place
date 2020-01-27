@@ -122,7 +122,7 @@ const ParallaxContainer = styled.div`
 `
 
 const ImgContainer = styled(motion.div)`
-  height: 50vh;
+  height: 60vh;
   position: relative;
   overflow: hidden;
   will-change: transform;
@@ -252,7 +252,7 @@ export const ModelList: React.FC = () => {
   }
 
   const parallaxOverlayStyle = {
-    opacity: useTransform(scrollYProgress, [0, 1], [0, 1])
+    opacity: useTransform(scrollYProgress, [0, 0.75], [0, 1])
   }
 
   useEffect(() => {
