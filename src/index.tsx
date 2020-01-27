@@ -15,6 +15,7 @@ const Root: React.FC = () => (
   </ContentProvider>
 )
 
+window.history.scrollRestoration = 'manual'
 ReactDOM.render(<Root />, document.querySelector('#root'))
 
 // If you want your app to work offline and load faster, you can change
