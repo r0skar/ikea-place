@@ -55,6 +55,7 @@ const List = styled(motion.ul)`
 const ListItem = styled(motion.li)`
   display: block;
   height: 50vh;
+  opacity: 0;
   will-change: transform, opacity;
 `
 

@@ -18,7 +18,7 @@ const transition = {
 
 const pageVariants = {
   enter: {
-    transition: { staggerChildren: 0.5 }
+    transition: { delayChildren: 0.1, staggerChildren: 0.5 }
   },
   exit: {
     transition: { staggerChildren: 0.1 }
@@ -150,6 +150,7 @@ const CoverImage = styled(motion.img)`
   object-position: 50% 50%;
   height: 100%;
   width: 100%;
+  opacity: 0;
   will-change: transform, opacity;
 `
 
@@ -169,6 +170,7 @@ const Content = styled(motion.div)`
 const Title = styled(motion.h1)`
   color: #333333;
   font-size: 2rem;
+  opacity: 0;
   will-change: transform, opacity;
 
   @media (min-width: 568px) {
@@ -177,6 +179,7 @@ const Title = styled(motion.h1)`
 `
 
 const Description = styled(motion.p)`
+  opacity: 0;
   will-change: transform, opacity;
 
   @media (min-width: 568px) {
