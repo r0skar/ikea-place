@@ -18,8 +18,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root {
+    /* FIXME: this causes some weird behaviour on iOS Chrome, but works fine everywhere else. */
+    /* Using a fixed height would help, but disables all parallax effects. */
     min-height: 100vh;
-    min-height: fill-available;
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
