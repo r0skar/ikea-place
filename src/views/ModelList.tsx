@@ -38,7 +38,7 @@ const coverImageVariants = {
   enter: {
     scale: 1,
     opacity: 1,
-    transition: { ...transition, duration: 1.5 }
+    transition: { ...transition, duration: 2 }
   },
   exit: {
     opacity: 0,
