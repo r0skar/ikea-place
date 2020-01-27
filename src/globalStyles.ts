@@ -18,10 +18,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    height: 100vh;
-    height: fill-available;
-    width: 100vw;
-    width: fill-available;
+    min-height: 100vh;
+    min-height: fill-available;
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
